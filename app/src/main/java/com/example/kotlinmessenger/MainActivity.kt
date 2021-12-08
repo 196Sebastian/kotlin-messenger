@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.content.Intent
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
             Log.d("MainActivity", "Email is: $email")
             Log.d("MainActivity", "Password: $password")
+
+            FirebaseAuth.getInstance()
+
+
         }
 
         findViewById<TextView>(R.id.already_have_account_textView).setOnClickListener{
