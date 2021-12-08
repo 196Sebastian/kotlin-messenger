@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/design_default_color_primary"
+    android:background="@drawable/media_messenger_background"
     tools:context=".MainActivity">
 
     <EditText
