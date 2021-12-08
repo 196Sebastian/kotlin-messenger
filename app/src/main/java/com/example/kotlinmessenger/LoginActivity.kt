@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +19,8 @@ class LoginActivity:AppCompatActivity() {
             val password: String = findViewById<EditText>(R.id.editText_login_password).text.toString()
 
             Log.d("Login", "Attempt login with email/password: $email/***")
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
         }
 
         findViewById<TextView>(R.id.back_to_registration).setOnClickListener{
