@@ -5,18 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
 
 
-    <Button
+    <ImageView
+        android:id="@+id/select_photo_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:background="@drawable/round_shape_button"
         android:layout_marginBottom="25dp"
-        android:text="Select Photo"
         app:layout_constraintBottom_toTopOf="@+id/editText_username"
         app:layout_constraintStart_toStartOf="@+id/editText_username"
         app:layout_constraintEnd_toEndOf="@+id/editText_username"/>
+
+    <TextView
+        android:id="@+id/select_photo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Select Photo"
+        app:layout_constraintBottom_toTopOf="@+id/select_photo_image"
+        app:layout_constraintEnd_toEndOf="@+id/select_photo_image"
+        app:layout_constraintStart_toStartOf="@+id/select_photo_image" />
+
 
     <EditText
         android:id="@+id/editText_username"
