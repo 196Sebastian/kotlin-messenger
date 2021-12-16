@@ -12,12 +12,18 @@ import android.util.Log
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    private var selectedPhotoUri: Uri? = null
+    var selectedPhotoUri: Uri? = null
+
+    lateinit var auth : FirebaseAuth
+    lateinit var databaseReference : DatabaseReference
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.button_register).setOnClickListener {
             uploadImageToFirebaseStorage()
-            
+
             when {
                 TextUtils.isEmpty(findViewById<EditText>(R.id.editText_username).text.toString().trim{ it <= ' '}) -> {
                     Toast.makeText(
@@ -116,10 +122,29 @@ class RegisterActivity : AppCompatActivity() {
             .addOnSuccessListener { it ->
                 Log.d("RegisterActivity","Successfully uploaded image: ${it.metadata?.path}")
 
+                saveUserToFirebaseDatabase(it.toString())
             }
             .addOnFailureListener{
                 // Do some logging here
             }
     }
 
+    private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
+
+
+        auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid
+        databaseReference = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val etUsername = findViewById<EditText>(R.id.editText_username)
+
+        val user = User(uid, etUsername.text.toString(), profileImageUrl)
+
+        if(uid != null) {
+            databaseReference.child(uid).setValue(user).addOnSuccessListener {
+                Log.d("RegisterActivity", "Finally we saved user to Firebase Database")
+            }
+        } else {
+            Toast.makeText(this@RegisterActivity, "Failed to upload profile", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
