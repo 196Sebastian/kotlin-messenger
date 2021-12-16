@@ -48,8 +48,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx:20.0.1'
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
-
-
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
+    implementation 'com.google.firebase:firebase-firestore:24.0.0'
 }
 
 apply plugin: 'com.android.application'
