@@ -14,7 +14,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -70,23 +72,17 @@ class RegisterActivity : AppCompatActivity() {
                     val password: String = findViewById<EditText>(R.id.editText_password).text.toString().trim{ it <= ' '}
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
 
                                 val firebaseUser: FirebaseUser = task.result!!.user!!
+                                val registeredEmail = firebaseUser.email!!
+                                val user = User(firebaseUser.uid, username, registeredEmail)
 
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    "You were registered successfully.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                FirestoreClass().registerUser(this, user)
 
-                                val intent = Intent (this@RegisterActivity, LoginActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("user_id", firebaseUser.uid)
-                                intent.putExtra("email_id",email)
-                                startActivity(intent)
-                                finish()
+
                             } else {
                                 Toast.makeText(
                                     this@RegisterActivity,
@@ -112,6 +108,13 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    fun userRegisteredSuccess(){
+        Toast.makeText(this, "You have " + "successfully registered", Toast.LENGTH_LONG).show()
+
+        FirebaseAuth.getInstance().signOut()
+        finish()
+    }
+
     private fun uploadImageToFirebaseStorage() {
         if(selectedPhotoUri == null) return
 
@@ -121,30 +124,9 @@ class RegisterActivity : AppCompatActivity() {
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener { it ->
                 Log.d("RegisterActivity","Successfully uploaded image: ${it.metadata?.path}")
-
-                saveUserToFirebaseDatabase(it.toString())
             }
             .addOnFailureListener{
                 // Do some logging here
             }
-    }
-
-    private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
-
-
-        auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid
-        databaseReference = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val etUsername = findViewById<EditText>(R.id.editText_username)
-
-        val user = User(uid, etUsername.text.toString(), profileImageUrl)
-
-        if(uid != null) {
-            databaseReference.child(uid).setValue(user).addOnSuccessListener {
-                Log.d("RegisterActivity", "Finally we saved user to Firebase Database")
-            }
-        } else {
-            Toast.makeText(this@RegisterActivity, "Failed to upload profile", Toast.LENGTH_SHORT).show()
-        }
     }
 }
