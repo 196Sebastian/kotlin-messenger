@@ -13,13 +13,14 @@ class FirestoreClass {
             .document(getCurrentUserId()).set(user, SetOptions.merge())
             .addOnSuccessListener {
                 activity.userRegisteredSuccess()
+
             } .addOnFailureListener{
 
             Log.d(activity.javaClass.simpleName, "Error registering new user")
             }
     }
 
-    fun getCurrentUserId(): String {
+    private fun getCurrentUserId(): String {
         return FirebaseAuth.getInstance().currentUser!!.uid
     }
 }

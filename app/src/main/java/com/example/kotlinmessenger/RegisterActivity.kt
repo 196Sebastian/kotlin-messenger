@@ -109,10 +109,24 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun userRegisteredSuccess(){
-        Toast.makeText(this, "You have " + "successfully registered", Toast.LENGTH_LONG).show()
 
-        FirebaseAuth.getInstance().signOut()
-        finish()
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val etUsername = findViewById<EditText>(R.id.editText_username).text.toString()
+        val email: String = findViewById<EditText>(R.id.editText_email).text.toString()
+
+        val user = User(uid, etUsername , email)
+
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", "Finally we saved user to Firebase Database")
+
+                Toast.makeText(this, "You have " + "successfully registered", Toast.LENGTH_LONG).show()
+
+
+                FirebaseAuth.getInstance().signOut()
+                finish()
+            }
     }
 
     private fun uploadImageToFirebaseStorage() {
@@ -124,6 +138,8 @@ class RegisterActivity : AppCompatActivity() {
         ref.putFile(selectedPhotoUri!!)
             .addOnSuccessListener { it ->
                 Log.d("RegisterActivity","Successfully uploaded image: ${it.metadata?.path}")
+
+                userRegisteredSuccess()
             }
             .addOnFailureListener{
                 // Do some logging here

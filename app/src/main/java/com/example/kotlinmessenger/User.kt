@@ -5,14 +5,12 @@ import android.os.Parcelable
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter.writeString
 
 data class User(val uid: String = "", val username: String = "", val email: String = "",
-                val profileImage: String = "", val mobile: Long = 0, val fcmToken: String = ""): Parcelable {
+                val profileImage: String = ""): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readLong(),
-        parcel.readString()!!
     ) {
     }
 
@@ -21,8 +19,6 @@ data class User(val uid: String = "", val username: String = "", val email: Stri
         writeString(username)
         writeString(email)
         writeString(profileImage)
-        writeLong(mobile)
-        writeString(fcmToken)
     }
 
     override fun describeContents() = 0
