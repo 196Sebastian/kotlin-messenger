@@ -15,9 +15,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/rounded_edittext"
-
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -25,6 +24,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Information"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText_login_email"
+        app:layout_constraintStart_toStartOf="@+id/editText_login_email" />
 
     <EditText
         android:id="@+id/editText_login_password"
