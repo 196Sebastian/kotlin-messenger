@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Select Photo"
+        android:textSize="18sp"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/select_photo_image"
         app:layout_constraintEnd_toEndOf="@+id/select_photo_image"
@@ -98,14 +99,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Already have an account?"
-        android:textSize="13sp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
         android:clickable="true"
+        android:text="Already have an account?"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/button_register"
         app:layout_constraintStart_toStartOf="@+id/button_register"
-        app:layout_constraintTop_toBottomOf="@+id/button_register" />
+        app:layout_constraintTop_toBottomOf="@+id/button_register"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/select_photo_imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:civ_border_width="4dp"
+        app:civ_border_color="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/select_photo_image"
+        app:layout_constraintEnd_toEndOf="@+id/select_photo_image"
+        app:layout_constraintStart_toStartOf="@+id/select_photo_image"
+        app:layout_constraintTop_toTopOf="@+id/select_photo_image" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

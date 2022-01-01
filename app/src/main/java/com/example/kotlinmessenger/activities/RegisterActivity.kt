@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import de.hdodenhof.circleimageview.CircleImageView
+import org.w3c.dom.Text
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -97,7 +99,10 @@ class RegisterActivity : AppCompatActivity() {
 
             selectedPhotoUri = data.data
 
-            findViewById<ImageView>(R.id.select_photo_image).setImageURI(selectedPhotoUri)
+            findViewById<CircleImageView>(R.id.select_photo_imageView).setImageURI(selectedPhotoUri)
+
+            findViewById<ImageView>(R.id.select_photo_image).alpha = 0f
+            findViewById<TextView>(R.id.select_photo_text).alpha = 0f
         }
     }
 
