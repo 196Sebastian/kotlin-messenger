@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import de.hdodenhof.circleimageview.CircleImageView
-import org.w3c.dom.Text
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -28,7 +27,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         findViewById<TextView>(R.id.already_have_account_textView).setOnClickListener{
-            onBackPressed()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         findViewById<ImageView>(R.id.select_photo_image).setOnClickListener{
@@ -51,13 +51,13 @@ class RegisterActivity : AppCompatActivity() {
 
                 TextUtils.isEmpty(findViewById<EditText>(R.id.editText_email).text.toString().trim{ it <= ' '}) -> {
                     Toast.makeText(
-                        this@RegisterActivity, "Please enter Username.", Toast.LENGTH_SHORT
+                        this@RegisterActivity, "Please enter Email.", Toast.LENGTH_SHORT
                     ).show()
                 }
 
                 TextUtils.isEmpty(findViewById<EditText>(R.id.editText_password).text.toString().trim{ it <= ' '}) -> {
                     Toast.makeText(
-                        this@RegisterActivity, "Please enter Username.", Toast.LENGTH_SHORT
+                        this@RegisterActivity, "Please enter Password.", Toast.LENGTH_SHORT
                     ).show()
                 }
                 else -> {
@@ -121,8 +121,9 @@ class RegisterActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "You have " + "successfully registered", Toast.LENGTH_LONG).show()
 
-                FirebaseAuth.getInstance().signOut()
-                finish()
+                val intent = Intent(this, MessagesActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
     }
 

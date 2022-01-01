@@ -52,7 +52,7 @@ class LoginActivity:AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                val intent = Intent (this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent (this@LoginActivity, MessagesActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
                                 intent.putExtra("email_id",email)
