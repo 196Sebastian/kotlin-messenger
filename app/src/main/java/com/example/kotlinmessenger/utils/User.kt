@@ -1,8 +1,7 @@
-package com.example.kotlinmessenger
+package com.example.kotlinmessenger.utils
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter.writeString
 
 data class User(val uid: String = "", val username: String = "", val email: String = "",
                 val profileImage: String = ""): Parcelable {

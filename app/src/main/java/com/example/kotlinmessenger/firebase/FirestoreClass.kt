@@ -1,5 +1,8 @@
-package com.example.kotlinmessenger
+package com.example.kotlinmessenger.firebase
 import android.util.Log
+import com.example.kotlinmessenger.utils.Constant
+import com.example.kotlinmessenger.utils.User
+import com.example.kotlinmessenger.activities.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions

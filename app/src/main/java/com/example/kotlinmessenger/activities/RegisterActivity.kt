@@ -1,31 +1,24 @@
-package com.example.kotlinmessenger
+package com.example.kotlinmessenger.activities
 
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.MediaStore.MediaColumns.RELATIVE_PATH
 import android.text.TextUtils
 import android.util.Log
 import android.widget.*
+import com.example.kotlinmessenger.firebase.FirestoreClass
+import com.example.kotlinmessenger.R
+import com.example.kotlinmessenger.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
     var selectedPhotoUri: Uri? = null
-
-    lateinit var auth : FirebaseAuth
-    lateinit var databaseReference : DatabaseReference
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,7 +115,6 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "Finally we saved user to Firebase Database")
 
                 Toast.makeText(this, "You have " + "successfully registered", Toast.LENGTH_LONG).show()
-
 
                 FirebaseAuth.getInstance().signOut()
                 finish()
