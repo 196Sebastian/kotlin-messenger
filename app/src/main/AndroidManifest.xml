@@ -11,7 +11,7 @@
         android:theme="@style/Theme.KotlinMessenger">
         <activity
             android:name=".activities.RegisterActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">

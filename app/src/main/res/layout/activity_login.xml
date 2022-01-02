@@ -11,13 +11,13 @@
         android:id="@+id/editText_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
         android:layout_marginRight="20dp"
-        android:padding="8dp"
         android:background="@drawable/rounded_edittext"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:padding="12dp"
         android:paddingLeft="15dp" />
 
     <TextView
@@ -36,12 +36,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText_login_email"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/rounded_edittext"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="8dp"
+        android:padding="12dp"
         android:paddingLeft="15dp" />
 
     <Button
@@ -59,14 +59,14 @@
         android:id="@+id/register_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Don't have an account? Register"
-        android:textSize="13sp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:clickable="true"
+        android:layout_below="@+id/button_login"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/button_login" />
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:text="Don't have an account? Register"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
